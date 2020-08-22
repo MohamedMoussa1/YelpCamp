@@ -8,10 +8,11 @@ const express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
   User = require("./models/user"),
-  // ROUTES
-  commentRoutes = require("./routes/comments"),
-  campgroundRoutes = require("./routes/campgrounds"),
-  indexRoutes = require("./routes/index");
+  methodOverride = require("method-override");
+// ROUTES
+(commentRoutes = require("./routes/comments")),
+  (campgroundRoutes = require("./routes/campgrounds")),
+  (indexRoutes = require("./routes/index"));
 
 // Connect to DB
 mongoose
@@ -26,6 +27,7 @@ mongoose
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public")); // Connects to 'public' folder // YelpCamp/public
+app.use(methodOverride("_method"));
 
 // Seed DB
 //seedDB();
