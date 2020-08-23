@@ -8,7 +8,8 @@ const express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
   User = require("./models/user"),
-  methodOverride = require("method-override");
+  methodOverride = require("method-override"),
+  flash = require("connect-flash");
 // ROUTES
 (commentRoutes = require("./routes/comments")),
   (campgroundRoutes = require("./routes/campgrounds")),
@@ -28,9 +29,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public")); // Connects to 'public' folder // YelpCamp/public
 app.use(methodOverride("_method"));
+app.use(flash());
 
 // Seed DB
 //seedDB();
+
+// Moment
+app.locals.moment = require("moment"); // available in all view files via 'moment
 
 // PASSPORT CONFIG
 app.use(
@@ -50,6 +55,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function (req, res, next) {
   // Pass req.user to every template
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
   next();
 });
 

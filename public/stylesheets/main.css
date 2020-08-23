@@ -1,3 +1,13 @@
+.navbar-inverse {
+  border-radius: 0;
+}
+
+.jumbotron {
+  color: white;
+  background-image: url("https://images.unsplash.com/photo-1555643888-6122dd1a8505?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80");
+  background-size: cover;
+}
+
 .thumbnail img {
   width: 100%;
 }
