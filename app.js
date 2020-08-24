@@ -17,11 +17,15 @@ const express = require("express"),
 
 // Connect to DB
 mongoose
-  .connect("mongodb://localhost:27017/yelp_camp", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
+  .connect(
+    "mongodb+srv://mohamed:Heroku@cluster0.kxwdw.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    }
+  )
   .then(() => console.log("Connected to DB!"))
   .catch((error) => console.log(error.message));
 
