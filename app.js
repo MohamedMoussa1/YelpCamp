@@ -15,17 +15,18 @@ const express = require("express"),
   (campgroundRoutes = require("./routes/campgrounds")),
   (indexRoutes = require("./routes/index"));
 
+console.log(process.env.DATABASEURL);
+
 // Connect to DB
+// mongoose.connect("mongodb://localhost:27017/yelp_camp",
+// "mongodb+srv://mohamed:Heroku@cluster0.kxwdw.mongodb.net/<dbname>?retryWrites=true&w=majority"
 mongoose
-  .connect(
-    "mongodb+srv://mohamed:Heroku@cluster0.kxwdw.mongodb.net/<dbname>?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    }
-  )
+  .connect(process.env.DATABASEURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  })
   .then(() => console.log("Connected to DB!"))
   .catch((error) => console.log(error.message));
 
