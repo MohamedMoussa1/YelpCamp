@@ -49,7 +49,7 @@ router.post(
 // LOGOUT ROUTE
 router.get("/logout", function (req, res) {
   req.logOut();
-  req.flash("success", "Loggedout Successfully");
+  req.flash("success", "See you later");
   res.redirect("/campgrounds");
 });
 module.exports = router;
