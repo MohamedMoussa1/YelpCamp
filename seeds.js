@@ -31,7 +31,7 @@ const seedDB = async () => {
   console.log("Removed Campgrounds");
   await Comment.deleteMany({});
   console.log("Removed Comments");
-  for (seed of data) {
+  for (let seed of data) {
     const campground = await Campground.create(seed);
     console.log("Campground Added");
     // Create a comment
